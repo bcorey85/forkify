@@ -1,18 +1,5 @@
-// import pizzaIngredients from './data/pizza_ingredients';
+import pizzaIngredients from './data/pizza_ingredients';
 
-// async getRecipe() {
-//     try {
-//         const res = pizzaIngredients;
-//         this.title = res.data.recipe.title;
-//         this.author = res.data.recipe.publisher;
-//         this.img = res.data.recipe.image_url;
-//         this.url = res.data.recipe.source_url;
-//         this.ingredients = res.data.recipe.ingredients;
-//     } catch (error) {
-//         console.log(error);
-//         alert('Something went wrong :(');
-//     }
-// }
 
 
 import axios from 'axios';
@@ -23,26 +10,38 @@ export default class Recipe {
         this.id = id;
     };
  
+    // async getRecipe() {
+    //     try {
+    //         const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${this.id}`);
+    //         this.title = res.data.recipe.title;
+    //         this.author = res.data.recipe.publisher;
+    //         this.img = res.data.recipe.image_url;
+    //         this.url = res.data.recipe.source_url;
+    //         this.ingredients = res.data.recipe.ingredients;
+    //     } catch(error) {
+    //         console.log(error);
+    //         alert('Something went wrong')
+    //     };
+    // }
     async getRecipe() {
         try {
-            const res = await axios(`${proxy}http://food2fork.com/api/get?key=${key}&rId=${this.id}`);
+            const res = pizzaIngredients;
             this.title = res.data.recipe.title;
             this.author = res.data.recipe.publisher;
             this.img = res.data.recipe.image_url;
             this.url = res.data.recipe.source_url;
             this.ingredients = res.data.recipe.ingredients;
-        } catch(error) {
+        } catch (error) {
             console.log(error);
-            alert('Something went wrong')
-        };
+            alert('Something went wrong :(');
+        }
     }
-    
+
 
     calcTime() {
         const numIng = this.ingredients.length;
         const periods = Math.ceil(numIng / 3);
         this.time = periods * 15;
-
     };
 
     calcServings() {
